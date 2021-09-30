@@ -9,7 +9,7 @@ const Navbar = () => {
             <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
-          <img src={logo} style={{width: 40, height: 40}}/>
+          <img src={logo} style={{width: 40, height: 40}} alt='virus icon'/>
           <Typography variant="h6" color="inherit" noWrap>
             COVID-19 Map
           </Typography>
