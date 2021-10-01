@@ -1,29 +1,23 @@
 import React, {useEffect, useState} from 'react'
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
-import Markers from './Markers';
+import { Marker, InfoWindow, Map, GoogleApiWrapper } from 'google-maps-react';
 
-const Maps = () => {
+const Maps = ({google}) => {
     const [markers, setMarkers] = useState([]);
+    const [statistics, setStatistics] = useState([])
 
     useEffect(() => {
-      fetchData();
+      const url = 'https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases2_v1/FeatureServer/2/query?where=1%3D1&outFields=Country_Region,Deaths,Confirmed&outSR=4326&f=json';
+
+      const fetchData = async () => {
+        const response = await fetch(url);
+        const json = await response.json();
+        let arr = json.features;
+        setMarkers(arr.map(e => e.geometry))
+      }
+        fetchData()
   }, []);
 
-  
-    async function fetchData() {
-        fetch('https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases2_v1/FeatureServer/2/query?where=1%3D1&outFields=Country_Region,Deaths,Confirmed&outSR=4326&f=json')
-        .then(res => res.json())
-        .then(({features}) => {
-          setMarkers(features)
-        })
-        // const json = await res.json();
-        // const arr = [];
-        // const data = json.features.map(marker => {
-        //     marker = marker.geometry
-        //     arr.push(marker)
-        // })
-        // setMarkers(arr)
-    }
+
     const mapStyles = {        
       height: "100vh",
       width: "100%"};
@@ -33,17 +27,31 @@ const Maps = () => {
     }
     
     return (
-       <LoadScript
-         googleMapsApiKey='AIzaSyAe-6Nx27KG8WjYbfbtQIkASpJmklsmo-U'>
-          <GoogleMap
-            mapContainerStyle={mapStyles}
-            zoom={5}
-            center={defaultCenter}
-          >
-            <Markers markers={markers}/>
-          </GoogleMap>
-       </LoadScript>
+     <Map
+     google={google}
+     zoom={8}
+     style={mapStyles}
+     initialCenter={defaultCenter}
+     >
+       {!markers.length ? (
+                <h1 style={{fontSize: 180, color: 'red'}}>No markers</h1>
+            ) : (
+                    markers.map((marker,index) => (
+                      marker === undefined ? '' :
+                         <Marker 
+                            key={index} 
+                            position={{ lat: Number(marker.y), lng: Number(marker.x) }}>
+                                <InfoWindow position={{lat: Number(marker.x), lng: Number(marker.y)}}
+                                options={{ maxWidth: 100 }}>
+                                    <span>COVID</span>
+                                </InfoWindow>
+                         </Marker>
+                    ))
+                )
+            }
+       </Map>
     )
 };
 
-export default Maps
+export default GoogleApiWrapper({apiKey: ('AIzaSyAe-6Nx27KG8WjYbfbtQIkASpJmklsmo-U')})(Maps)
+
