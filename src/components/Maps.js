@@ -2,24 +2,16 @@ import React, { useEffect, useState } from 'react'
 import {Icon} from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import markerIconPng from "../icons/covid-19.png"
+import Dashboard from './Dashboard';
 
 const Maps = () => {
-  const [markers, setMarkers] = useState([])
-  const [deaths, setDeaths] = useState([])
-  const [confirmed, setConfirmed] = useState([])
+  const [data, setData] = useState([])
 
   useEffect(() => {
-    const url =
-      'https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases2_v1/FeatureServer/2/query?where=1%3D1&outFields=Country_Region,Deaths,Confirmed&outSR=4326&f=json'
-
     const fetchData = async () => {
-      const response = await fetch(url)
-      const json = await response.json()
-      let arr = json.features
-      let arr2 = arr.map((e) => e.attributes)
-      setDeaths(arr2.map((e) =>  e.Deaths))
-      setConfirmed(arr2.map((e) =>  e.Confirmed))
-      setMarkers(arr.map((e) => e.geometry))
+      const res = await fetch(`https://corona-api.com/countries`);
+      const json = await res.json();
+      setData(json.data)
     }
     fetchData()
   }, [])
@@ -32,7 +24,7 @@ const Maps = () => {
   const defaultCenter = [51.05, 17.02]
 
   const mapStyles = {
-    height: '95vh', 
+    height: '100vh', 
     backgroundColor: 'green'
   }
 
@@ -52,28 +44,28 @@ const Maps = () => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {!markers.length ? (
+        {!data.length ? (
           <h1 style={{ fontSize: 180, color: 'red' }}>No markers</h1>
         ) : (
-          markers.map((marker, index) => 
-            marker === undefined || index === undefined ? (
+          data.map((el, index) => 
+            el === undefined || index === undefined ? (
               ''
             ) : (
               <Marker
               icon={myIcon}
                 key={index}
-                position={{ lat: marker.y, lng: marker.x }}
+                position={{ lat: el.coordinates.latitude, lng: el.coordinates.longitude }}
               >
                 <Popup>
-                  Total deaths: {deaths[index]} <br />
-                  Total confirmed: {confirmed[index]}
+                  Total deaths: {el.latest_data.deaths} <br />
+                  Total confirmed: {el.latest_data.confirmed}
                 </Popup>
               </Marker>
             )
           )
         )}
       </MapContainer>
-      ,
+      <Dashboard data={data} />
     </div>
   )
 }

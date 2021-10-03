@@ -4,7 +4,6 @@ import 'fontsource-roboto'
 import { createTheme, ThemeProvider } from '@material-ui/core'
 import Navbar from './components/Navbar'
 import Maps from './components/Maps'
-import Dashboard from './components/Dashboard'
 const theme = createTheme({
   palette: {
     primary: { main: '#264653' },
@@ -17,7 +16,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <Navbar />
       <Maps />
-      <Dashboard />
     </ThemeProvider>
   )
 }

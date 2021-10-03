@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,29 +7,15 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const Dashboard = () => {
-    const [data, setData] = useState([])
-
-    useEffect(() => {
-        fetchData()
-    }, [])
-
-    const date = new Date();
-    const param = `${date.getDate()-1}-${date.getMonth() + 1}-${date.getFullYear()}`;
-    
-    const fetchData = async () => {
-        const res = await fetch(`https://covid19.mathdro.id/api/daily/${param}`)
-        const json = await res.json();
-        setData(json);
-    }
-
+const Dashboard = ({data}) => {
+    console.log(data)
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
           backgroundColor: theme.palette.common.black,
           color: theme.palette.common.white,
         },
         [`&.${tableCellClasses.body}`]: {
-          fontSize: 14,
+          fontSize: 12,
         },
       }));
       
@@ -45,15 +31,15 @@ const Dashboard = () => {
 
     return (
         <div>
+            <p>Updated at: {Date.now()}</p>
 <TableContainer component={Paper}>
-      <Table sx={{ maxWidth: 650 }} aria-label="simple table">
+      <Table sx={{ maxWidth: 500 }} aria-label="simple table">
         <TableHead>
-          <TableRow>
+          <TableRow style={{fontSize: 12, height: '20px'}}>
             <StyledTableCell>Country</StyledTableCell>
-            <StyledTableCell>Region</StyledTableCell>
-            <StyledTableCell align="right">Confirmed</StyledTableCell>
-            <StyledTableCell align="right">Deaths</StyledTableCell>
-            <StyledTableCell align="right">Revovery</StyledTableCell>
+            <StyledTableCell>Confirmed Total (today)</StyledTableCell>
+            <StyledTableCell>Deaths Total (today)</StyledTableCell>
+            <StyledTableCell>Recvovered</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -63,21 +49,16 @@ const Dashboard = () => {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <StyledTableCell component="th" scope="row">
-                {el.countryRegion}
+                {el.name}
               </StyledTableCell>
-              <StyledTableCell>{el.provinceState}</StyledTableCell>
-              <StyledTableCell align="right">{el.confirmed}</StyledTableCell>
-              <StyledTableCell align="right">{el.deaths}</StyledTableCell>
-              <StyledTableCell align="right">{el.recovered}</StyledTableCell>
+              <StyledTableCell>{el.latest_data.confirmed} ({el.today.confirmed})</StyledTableCell>
+              <StyledTableCell>{el.latest_data.deaths} ({el.today.deaths})</StyledTableCell>
+              <StyledTableCell>{el.latest_data.recovered}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-
-            {/* {data.map((el, index) => (
-                <p key={index}>{el.deaths}</p>
-            ))} */}
         </div>
     )
 }
