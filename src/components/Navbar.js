@@ -1,22 +1,21 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from 'react'
 import logo from '../images/virus.png'
-import {Typography, AppBar, CssBaseline, Toolbar } from '@material-ui/core'
-
+import { Typography, AppBar, CssBaseline, Toolbar } from '@material-ui/core'
 
 const Navbar = () => {
-    return (
-        <Fragment>
-            <CssBaseline />
+  return (
+    <Fragment>
+      <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
-          <img src={logo} style={{width: 40, height: 40}} alt='virus icon'/>
+          <img src={logo} style={{ width: 40, height: 40 }} alt="virus icon" />
           <Typography variant="h6" color="inherit" noWrap>
             COVID-19 Map
           </Typography>
         </Toolbar>
       </AppBar>
-        </Fragment>
-    )
+    </Fragment>
+  )
 }
 
 export default Navbar
