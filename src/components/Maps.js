@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-// import { Marker, InfoWindow, Map, GoogleApiWrapper } from 'google-maps-react'
+import {Icon} from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import markerIconPng from "../icons/covid-19.png"
 
 const Maps = () => {
   const [markers, setMarkers] = useState([])
@@ -23,11 +24,18 @@ const Maps = () => {
     fetchData()
   }, [])
 
+  const myIcon = new Icon({
+    iconUrl: markerIconPng,
+    iconSize: [25,25],
+});
+
   const defaultCenter = [51.05, 17.02]
+
   const mapStyles = {
     height: '95vh', 
     backgroundColor: 'green'
   }
+
   return (
     <div
       style={{
@@ -47,18 +55,18 @@ const Maps = () => {
         {!markers.length ? (
           <h1 style={{ fontSize: 180, color: 'red' }}>No markers</h1>
         ) : (
-          
           markers.map((marker, index) => 
             marker === undefined || index === undefined ? (
               ''
             ) : (
               <Marker
+              icon={myIcon}
                 key={index}
-                position={{ lat: Number(marker.y), lng: Number(marker.x) }}
+                position={{ lat: marker.y, lng: marker.x }}
               >
                 <Popup>
-                  Deaths: {deaths[index]} <br />
-                  Confirmed: {confirmed[index]}
+                  Total deaths: {deaths[index]} <br />
+                  Total confirmed: {confirmed[index]}
                 </Popup>
               </Marker>
             )
