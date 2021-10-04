@@ -1,9 +1,10 @@
 import React from 'react'
-import './App.css'
-import 'fontsource-roboto'
 import { createTheme, ThemeProvider } from '@material-ui/core'
+import 'fontsource-roboto'
 import Navbar from './components/Navbar'
 import Maps from './components/Maps'
+import Chart from './components/Chart'
+
 const theme = createTheme({
   palette: {
     primary: { main: '#264653' },
