@@ -73,16 +73,11 @@ const Maps = () => {
               )
             )}
           </MapContainer>
-        </Grid>
+                  </Grid>
         <Grid item xs={6}>
           <Chart />
           <InfoCard data={data} />
           <Dashboard data={data} />
-        </Grid>
-      </Grid>
-      <Grid container spacing={0.5}>
-        <Grid item xs={6}>
-          
         </Grid>
       </Grid>
     </>

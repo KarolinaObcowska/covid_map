@@ -49,13 +49,12 @@ const Dashboard = ({ data }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <TableContainer component={Paper}>
+      <TableContainer  component={Paper}>
         <Table
           stickyHeader
-          sx={{ maxWidth: '50vw', height: '93vh' }}
           aria-label="simple table"
         >
-          <TableHead style={{ fontSize: 12, height: '2px' }}>
+          <TableHead style={{ fontSize: 12 }}>
             <TableRow>
               <StyledTableCell>COUNTRY</StyledTableCell>
               <StyledTableCell>CONFIRMED</StyledTableCell>
