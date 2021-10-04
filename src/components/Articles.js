@@ -28,11 +28,11 @@ const Articles = () => {
             <h1>
         The latest articles:
     </h1>
-<Grid container spacing={5}>
+<Grid container spacing={1}>
     {
         articles.map((el) => (
             <Grid item xs={3}>
-                <Card sx={{height: 'fit-content'}}>
+                <Card className='card' sx={{height: 'fit-content'}}>
                     <CardContent>
                     <Typography variant="h5" gutterBottom>{el.title.substring(0,30)}...</Typography>
                     
@@ -43,7 +43,7 @@ const Articles = () => {
                         alt="Article image"
                         />
                         <Typography variant="body2" color="text.secondary">
-                        {el.content.substring(0, 150)}...
+                        {el.content.substring(0, 120)}...
         </Typography>
                     </CardContent>
                     <CardActions>

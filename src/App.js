@@ -2,8 +2,9 @@ import React from 'react'
 import { createTheme, ThemeProvider } from '@material-ui/core'
 import 'fontsource-roboto'
 import Navbar from './components/Navbar'
-import Maps from './components/Maps'
+import Layout from './components/Layout'
 import Articles from './components/Articles'
+import Footer from './components/Footer'
 
 const theme = createTheme({
   palette: {
@@ -16,8 +17,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Navbar />
-      <Maps />
+      <Layout />
       <Articles />
+      <Footer />
     </ThemeProvider>
   )
 }

@@ -8,8 +8,9 @@ import markerIconPng from '../icons/covid-19.png'
 import Dashboard from './Dashboard'
 import Chart from './Chart'
 import InfoCard from './InfoCard'
+import StatisticsCard from './StatisticsCard';
 
-const Maps = () => {
+const Layout = () => {
   const [data, setData] = useState([])
 
   useEffect(() => {
@@ -73,6 +74,7 @@ const Maps = () => {
               )
             )}
           </MapContainer>
+          <StatisticsCard data={data}/>
                   </Grid>
         <Grid item xs={6}>
           <Chart />
@@ -83,4 +85,4 @@ const Maps = () => {
     </>
   )
 }
-export default Maps
+export default Layout
