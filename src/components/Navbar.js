@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import logo from '../images/virus.png'
+import logo from '../icons/virus.png'
 import { Typography, AppBar, CssBaseline, Toolbar } from '@material-ui/core'
 
 const Navbar = () => {
