@@ -31,13 +31,13 @@ const Layout = () => {
 
   const mapStyles = {
     height: '100vh',
-    maxWidth: '50vw',
+    margin: '5px'
   }
 
   return (
     <>
       <Grid container spacing={0.5}>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <MapContainer
             center={defaultCenter}
             zoom={4}
@@ -76,7 +76,7 @@ const Layout = () => {
           </MapContainer>
           <StatisticsCard data={data}/>
                   </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6} >
           <Chart />
           <InfoCard data={data} />
           <Dashboard data={data} />

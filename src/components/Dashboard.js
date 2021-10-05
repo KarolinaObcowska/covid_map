@@ -48,8 +48,8 @@ const Dashboard = ({ data }) => {
   }))
 
   return (
-    <ThemeProvider theme={theme}>
-      <TableContainer  component={Paper}>
+    <ThemeProvider theme={theme} >
+      <TableContainer  component={Paper} style={{padding: '5px'}}>
         <Table
           stickyHeader
           aria-label="simple table"

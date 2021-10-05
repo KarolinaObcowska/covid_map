@@ -31,7 +31,7 @@ const Articles = () => {
 <Grid container spacing={1}>
     {
         articles.map((el) => (
-            <Grid item xs={3}>
+            <Grid item xs={12} md={3}>
                 <Card className='card' sx={{height: 'fit-content'}}>
                     <CardContent>
                     <Typography variant="h5" gutterBottom>{el.title.substring(0,30)}...</Typography>

@@ -81,7 +81,7 @@ const Chart = ({ casesType }) => {
   }, [casesType])
 
   return (
-    <div>
+    <div style={{margin: '5px'}}>
       {data?.length > 0 && (
         <Line
           height={300}
