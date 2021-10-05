@@ -89,8 +89,8 @@ const Chart = ({ casesType }) => {
             datasets: [
               {
                 label: 'Confirmed Cases',
-                backgroundColor: '#7F6C7F',
-                borderColor: '#7F6C7F',
+                backgroundColor: '#F29C1E',
+                borderColor: '#F29C1E',
                 data: data,
               },
             ],

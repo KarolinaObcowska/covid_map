@@ -30,7 +30,7 @@ const Dashboard = ({ data }) => {
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: '#F29C1E',
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {

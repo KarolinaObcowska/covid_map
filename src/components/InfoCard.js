@@ -23,7 +23,7 @@ const InfoCard = ({data}) => {
                     .reduce((a,b) => a+b, 0);
     return (
         <div className='wrapper'>
-        <Card className='card'>
+        <Card className='card' style={{backgroundColor: '#274553', color: 'white'}}>
             <CardContent>
                 <Typography>
                     Total Cases:
@@ -35,7 +35,7 @@ const InfoCard = ({data}) => {
                 <h2 className='active'>+{todayCases}</h2>
             </CardContent>
         </Card>
-        <Card className='card'>
+        <Card className='card' style={{backgroundColor: '#274553', color: 'white'}}>
         <CardContent>
             <Typography>
                 Total Deaths:
@@ -47,7 +47,7 @@ const InfoCard = ({data}) => {
             <h2 className='active'>+{todayDeaths}</h2>
         </CardContent>
     </Card>
-    <Card className='card'>
+    <Card className='card' style={{backgroundColor: '#274553', color: 'white'}}>
             <CardContent>
                 <Typography>
                     Total Recovered:

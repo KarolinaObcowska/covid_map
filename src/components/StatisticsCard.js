@@ -14,15 +14,15 @@ const deathRate = data
     const recoveredDeathRatio = recoveryRate/deathRate;
     return (
         <div className='wrapper'>
-        <Card className='card'>
-            <CardContent>
+        <Card className='card' style={{backgroundColor: '#274553', color: 'white'}}>
+            <CardContent >
                 <Typography>
                     Recovery Rate :
                 </Typography>
                 <h2>{Math.round(recoveryRate * 100)/100}</h2>
             </CardContent>
         </Card>
-        <Card className='card'>
+        <Card className='card' style={{backgroundColor: '#274553', color: 'white'}}>
         <CardContent>
                 <Typography>
                     Death Rate :
@@ -30,7 +30,7 @@ const deathRate = data
                 <h2>{Math.round(deathRate * 100)/100}</h2>
             </CardContent>
     </Card>
-    <Card className='card'>
+    <Card className='card' style={{backgroundColor: '#274553', color: 'white'}}>
         <CardContent>
                 <Typography>
                     Recovery : Death

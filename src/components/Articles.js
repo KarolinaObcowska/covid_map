@@ -25,7 +25,7 @@ const Articles = () => {
 
     return (
         <>
-            <h1>
+            <h1 style={{color: '#264653'}}>
         The latest articles:
     </h1>
 <Grid container spacing={1}>
@@ -47,7 +47,7 @@ const Articles = () => {
         </Typography>
                     </CardContent>
                     <CardActions>
-        <Button href={el.url} size="small">Read more</Button>
+        <Button href={el.url} size="small" style={{color: '#ff5363'}}>Read more</Button>
       </CardActions>
                 </Card>
             </Grid>
